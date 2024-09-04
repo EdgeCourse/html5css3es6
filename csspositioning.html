@@ -1,0 +1,120 @@
+<html>
+    <head>
+        <title>Positioning</title>
+        <style>
+            /*
+            Static: default. Elements are positioned according to the normal flow of the document. The top, right, bottom, left, and z-index properties have no effect.
+            */
+            .static-box {
+                background-color: lightblue;
+                padding: 20px;
+            }
+            /*
+            Relative: The element is positioned relative to its normal position.
+            Setting the top, right, bottom, and left properties will cause it to be offset from its original position.
+            Other elements in the document flow are not affected; the original space of the element is preserved.
+            */
+            .relative-box {
+                background-color: lightgreen;
+                padding: 20px;
+                position: relative;
+                top: 20px;
+                left: 30px;
+            }
+
+            /*
+            Fixed: The element is positioned relative to the viewport (browser window). It stays in the same place even if the page is scrolled. The top, right, bottom, and left properties are used to position it. Other elements in the document flow are not affected; the original space of the element is removed.
+            */
+            .fixed-box {
+                background-color: lightcoral;
+                padding: 20px;
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+            }
+            /*
+            Absolute: The element is positioned relative to its nearest positioned ancestor (an ancestor with position: relative, absolute, or fixed). If there is no positioned ancestor, it's positioned relative to the initial containing block (usually the <html> element). The top, right, bottom, and left properties are used to position it. Other elements in the document flow are not affected; the original space of the element is removed.
+            */
+
+            .relative-container {
+                position: relative;
+                background-color: lightgray;
+                padding: 30px;
+            }
+            .absolute-box {
+                background-color: lightyellow;
+                padding: 20px;
+                position: absolute;
+                top: 10px;
+                left: 20px;
+            }
+
+            /*
+            A hybrid of relative and fixed positioning. The element is positioned relative to its normal position until it crosses a specified threshold (using top, right, bottom, or left). Once it crosses the threshold, it becomes fixed and sticks to that position until the scrolling moves it out of the viewport.
+            */
+            .sticky-box {
+                background-color: lightseagreen;
+                padding: 20px;
+                position: sticky;
+                top: 0;
+            }
+            /*
+            z-index: 
+            */
+.container {
+  position: relative;
+  width: 300px;
+  height: 200px;
+}
+
+.box {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  opacity: 0.8; /* For visual clarity */
+}
+
+.box1 {
+  background-color: red;
+  top: 20px;
+  left: 20px;
+  z-index: 1; /* Will be above the other boxes */
+}
+
+.box2 {
+  background-color: green;
+  top: 50px;
+  left: 50px;
+  z-index: 3; /* Will be above all other boxes */
+}
+
+.box3 {
+  background-color: blue;
+  top: 80px;
+  left: 80px;
+  z-index: 2; /* Will be between box1 and box2 */
+}
+            
+        </style>
+    </head>
+<body>
+    <div class="static-box">This box has static positioning</div>
+
+    <div class="relative-box">This box has relative positioning</div>
+
+    <div class="fixed-box">This box has fixed positioning</div>
+
+    <div class="relative-container">
+        <div class="absolute-box">This box has absolute positioning</div>
+    </div>
+
+    <div class="sticky-box">This box has sticky positioning</div>
+    <h2>z-index Example</h2>
+
+    <div class="container">
+      <div class="box box1">1</div>
+      <div class="box box2">2</div>
+      <div class="box box3">3</div>
+    </div>
+</body>
+</html>

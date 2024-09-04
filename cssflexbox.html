@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.flex-container {
+  display: flex;
+  width: 400px;
+  height: 200px; /* For align-items demo */
+  border: 1px solid black;
+  margin-bottom: 20px;
+}
+
+.flex-item {
+  background-color: lightblue;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<h2>Flexbox Examples</h2>
+
+<h3>flex-direction & justify-content</h3>
+<h4>row (default)</h4>
+<div class="flex-container" style="justify-content: flex-start;">
+  <div class="flex-item">1</div>
+  <div class="flex-item">2</div>
+  <div class="flex-item">3</div>  
+</div>
+
+<div class="flex-container" style="justify-content: flex-end;">
+  <div class="flex-item">1</div>
+  <div class="flex-item">2</div>
+  <div class="flex-item">3</div>  
+</div>
+
+<div class="flex-container" style="justify-content: center;">
+  <div class="flex-item">1</div>
+  <div class="flex-item">2</div>
+  <div class="flex-item">3</div>  
+</div>
+
+<div class="flex-container" style="justify-content: space-between;">
+  <div class="flex-item">1</div>
+  <div class="flex-item">2</div>
+  <div class="flex-item">3</div>  
+</div>
+
+<div class="flex-container" style="justify-content: space-around;">
+  <div class="flex-item">1</div>
+  <div class="flex-item">2</div>
+  <div class="flex-item">3</div>  
+</div>
+
+<div class="flex-container" style="justify-content: space-evenly;">
+  <div class="flex-item">1</div>
+  <div class="flex-item">2</div>
+  <div class="flex-item">3</div>  
+</div>
+
+<h4>row-reverse</h4>
+<div class="flex-container" style="flex-direction: row-reverse; justify-content: flex-start;">
+  <div class="flex-item">1</div>
+  <div class="flex-item">2</div>
+  <div class="flex-item">3</div>  
+</div>
+
+<h4>column</h4>
+<div class="flex-container" style="flex-direction: column; justify-content: flex-start;">
+  <div class="flex-item">1</div>
+  <div class="flex-item">2</div>
+  <div class="flex-item">3</div>  
+</div>
+
+<h4>column-reverse</h4>
+<div class="flex-container" style="flex-direction: column-reverse; justify-content: flex-start;">
+  <div class="flex-item">1</div>
+  <div class="flex-item">2</div>
+  <div class="flex-item">3</div>  
+</div>
+
+<h3>flex-wrap</h3>
+<h4>wrap</h4>
+<div class="flex-container" style="flex-wrap: wrap;">
+  <div class="flex-item" style="flex-basis: 150px;">1</div>
+  <div class="flex-item" style="flex-basis: 150px;">2</div>
+  <div class="flex-item" style="flex-basis: 150px;">3</div>  
+</div>
+
+<h4>nowrap (default)</h4>
+<div class="flex-container" style="flex-wrap: nowrap;">
+  <div class="flex-item" style="flex-basis: 150px;">1</div>
+  <div class="flex-item" style="flex-basis: 150px;">2</div>
+  <div class="flex-item" style="flex-basis: 150px;">3</div>  
+</div>
+
+<h3>flex-basis, flex-grow, flex-shrink</h3>
+<div class="flex-container">
+  <div class="flex-item" style="flex-basis: 100px; flex-grow: 1; flex-shrink: 2;">1 (grows, shrinks more)</div>
+  <div class="flex-item" style="flex-basis: 150px; flex-grow: 2; flex-shrink: 1;">2 (grows more, shrinks less)</div>
+  <div class="flex-item" style="flex-basis: 50px; flex-grow: 0; flex-shrink: 0;">3 (fixed size)</div>  
+</div>
+
+<h3>align-items & align-self</h3>
+<div class="flex-container" style="align-items: flex-start;">
+  <div class="flex-item">1</div>
+  <div class="flex-item" style="align-self: flex-end;">2</div>
+  <div class="flex-item" style="align-self: center;">3</div>  
+</div>
+
+</body>
+</html>

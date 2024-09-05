@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <style>
+    .container {
+        display: flex;
+      }
+      
+      .products {
+        display: flex;
+        flex-wrap: wrap;
+        width: 60%; /* Adjust as needed */
+      }
+      
+      .product {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+        cursor: grab; /* Visual cue for dragging */
+      }
+      
+      .shopping-cart {
+        border: 1px solid #ccc;
+        padding: 20px;
+        width: 40%; /* Adjust as needed */
+        min-height: 200px; /* Ensure some space for dropping */
+      }
+      
+      .shopping-cart-list {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .cart-buttons {
+        margin-top: 20px;
+        text-align: center;
+      }
+  </style> 
+</head>
+<body>
+
+  <h1>Shopping Cart</h1>
+
+  <div class="container">
+    <div class="products">
+      </div>
+
+    <div class="shopping-cart">
+      <div class="shopping-cart-head">
+        <span class="product-quantity">0</span> Product(s) in Cart
+      </div>
+      <ul class="shopping-cart-list">
+      </ul>
+      <div class="cart-buttons">
+        <button class="empty-cart-btn">Empty Cart</button>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+// cart.js
+
+// Product data 
+const productsData = [
+  { id: 1, name: "Product 1", price: 10 },
+  { id: 2, name: "Product 2", price: 15 },
+  { id: 3, name: "Product 3", price: 20 }
+];
+
+// DOM elements
+const productsContainer = document.querySelector('.products');
+const shoppingCart = document.querySelector('.shopping-cart'); 
+const shoppingCartList = document.querySelector('.shopping-cart-list');
+const productQuantity = document.querySelector('.product-quantity');
+const totalPrice = document.querySelector('.total-price');
+const emptyCartBtn = document.querySelector('.empty-cart-btn');
+
+// Cart items (consider using local storage for persistence)
+let cartItems = [];
+
+// Render products
+function renderProducts() {
+  productsContainer.innerHTML = '';
+  productsData.forEach(product => {
+    const productElement = document.createElement('div');
+    productElement.classList.add('product');
+    productElement.draggable = true;
+    productElement.dataset.productId = product.id;
+    productElement.innerHTML = `
+      <h3>${product.name}</h3>
+      <p>$${product.price}</p>
+    `;
+    productsContainer.appendChild(productElement);
+
+    // Drag event listeners
+    productElement.addEventListener('dragstart', dragStart);
+  });
+}
+
+// Render cart items
+function renderCartItems() {
+  shoppingCartList.innerHTML = '';
+  cartItems.forEach(item => {
+    const cartItemElement = document.createElement('li');
+    cartItemElement.innerHTML = `
+      ${item.name} - $${item.price} x ${item.quantity} 
+      <button class="remove-item" data-product-id="${item.id}">Remove</button>
+    `;
+    shoppingCartList.appendChild(cartItemElement);
+
+    cartItemElement.querySelector('.remove-item').addEventListener('click', removeItem);
+  });
+
+  // Update cart summary
+  productQuantity.textContent = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  totalPrice.textContent = `$${total.toFixed(2)}`;
+}
+
+// Drag and drop handlers
+function dragStart(event) {
+  event.dataTransfer.setData('text/plain', event.target.dataset.productId);
+}
+
+function dragOver(event) {
+  event.preventDefault(); 
+}
+
+function drop(event) {
+  event.preventDefault();
+  const productId = event.dataTransfer.getData('text/plain');
+  const product = productsData.find(p => p.id === parseInt(productId));
+  addToCart(product);
+}
+
+// Cart functions
+function addToCart(product) {
+  const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+
+  if (existingItemIndex !== -1) {
+    cartItems[existingItemIndex].quantity++; 
+  } else {
+    cartItems.push({ ...product, quantity: 1 }); 
+  }
+
+  renderCartItems();
+}
+
+function removeItem(event) {
+  const productId = parseInt(event.target.dataset.productId);
+  cartItems = cartItems.filter(item => item.id !== productId);
+  renderCartItems();
+}
+
+function emptyCart() {
+  cartItems = [];
+  renderCartItems();
+}
+
+// Event listeners
+shoppingCart.addEventListener('dragover', dragOver);
+shoppingCart.addEventListener('drop', drop);
+emptyCartBtn.addEventListener('click', emptyCart);
+
+// Initial render
+renderProducts();
+renderCartItems();
+</script>
+</body>
+</html>

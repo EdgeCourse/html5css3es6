@@ -1,0 +1,102 @@
+<style>
+    
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex; /* Arrange list items horizontally */
+      }
+      
+      nav li {
+        margin: 0 10px; /* Add spacing between list items */
+      }
+      
+      nav a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+        background-color: #eee;
+        transform: skewX(-10deg); /* Skew the navigation items */
+        transition: transform 0.3s ease; /* Add smooth transition */
+      }
+      
+      nav a:hover {
+        transform: skewX(0); /* Remove skew on hover */
+        background-color: #ddd;
+      }
+/*
+.parallax:
+
+height: 400px;: Sets a fixed height for the parallax container.
+overflow: hidden;: Hides any content that overflows the container, ensuring a clean visual presentation.
+position: relative;: Establishes a positioning context for child elements within the container, allowing for absolute positioning of the background.
+.parallax-bg:
+
+position: absolute;: Positions the background element absolutely within its parent (.parallax), enabling precise placement.
+top: 0; left: 0; width: 100%;: Stretches the background to cover the entire container.
+height: 120%;: Makes the background slightly taller than the container to ensure it covers the entire area even when scrolling.
+background-image: url("your-background-image.jpg");: Sets the desired background image.
+background-size: cover;: Scales the background image to cover the entire container while maintaining its aspect ratio.
+transform: skewY(10deg);: Skews the background along the Y-axis (vertically) by 10 degrees, creating a visually interesting effect.
+.content:
+
+position: relative;: Ensures the content is positioned relative to its normal flow within the container.
+z-index: 1;: Places the content on top of the background, ensuring it's visible.
+padding: 20px;: Adds padding around the content for visual spacing.
+*/
+      .parallax {
+        height: 400px;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      .parallax-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 120%; /* Make background slightly larger */
+        background-image: url("bear.jpeg");
+        background-size: cover;
+        transform: skewY(10deg); /* Skew the background */
+      }
+      
+      .content {
+        position: relative;
+        z-index: 1; /* Ensure content is on top */
+        padding: 20px;
+      }
+      
+    
+</style>
+<nav>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+<section class="parallax">
+    <div class="parallax-bg"></div>
+    <div class="content">
+      <h2>Parallax with Skew</h2>
+      <p>Some content here...</p>
+    </div>
+  </section>
+  <script>
+
+      /* Add parallax effect with JavaScript */
+      /*
+      window.addEventListener('scroll', function() { ... });: Attaches an event listener to the scroll event on the window. This function will be executed whenever the user scrolls the page.
+var scrolled = window.pageYOffset;: Retrieves the number of pixels the document has been scrolled vertically.
+var parallaxBg = document.querySelector('.parallax-bg');: Selects the background element using its class name.
+parallaxBg.style.top = (scrolled * 0.5) + 'px';: Calculates a new top position for the background based on the scroll amount. The 0.5 multiplier controls the parallax speed; a lower value results in a slower background movement.
+      */
+    window.addEventListener('scroll', function() {
+      var scrolled = window.pageYOffset;
+      var parallaxBg = document.querySelector('.parallax-bg');
+      parallaxBg.style.top = (scrolled * 0.5) + 'px'; /* Adjust scroll speed as needed */
+    });
+</script>

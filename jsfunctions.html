@@ -1,0 +1,58 @@
+<script>
+/*
+Functions help organize code into reusable blocks.
+They can accept parameters and return values.
+Different syntax options exist (traditional, anonymous, arrow) to suit various needs.
+IIFEs are useful for creating private scopes and executing code right away.
+*/
+//Function with Parameters
+function greet(name) {
+        console.log("Hello, " + name + "!");
+      }
+      
+greet("You"); 
+
+//Function Returning a Value
+function add(a, b) {
+  return a + b;
+}
+
+let sum = add(5, 3);
+console.log(sum); // Output: 8
+
+//Anonymous Function (often used with callbacks)
+let numbers = [1, 2, 3, 4];
+let doubled = numbers.map(function(num) {
+  return num * 2;
+});
+
+console.log(doubled); // Output: [2, 4, 6, 8]
+
+//Arrow Function (concise syntax)
+let multiply = (x, y) => x * y;
+let product = multiply(6, 7);
+console.log(product); // Output: 42
+
+//Immediately Invoked Function Expression (IIFE)
+(function() {
+    console.log("This function runs immediately!");
+  })();
+
+//in-use function that checks if a year is a leap year:
+function isLeapYear(year) {
+    if (year % 4 !== 0) {
+      return false; // Not divisible by 4
+    } else if (year % 100 !== 0) {
+      return true; // Divisible by 4 but not by 100
+    } else if (year % 400 !== 0) {
+      return false; // Divisible by 100 but not by 400
+    } else {
+      return true; // Divisible by 400
+    }
+  }
+  
+  console.log(isLeapYear(2024)); // Output: true
+  console.log(isLeapYear(2023)); // Output: false
+  console.log(isLeapYear(2000)); // Output: true
+  console.log(isLeapYear(1900)); // Output: false   
+</script>
